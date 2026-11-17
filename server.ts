@@ -477,13 +477,52 @@ async function startServer() {
     }
   });
 
-  // Dynamic SEO endpoints (robots.txt & sitemap.xml resolved to live origin / APP_URL)
+  // Dynamic SEO endpoints (robots.txt & sitemap.xml resolved to live host / APP_URL)
+  const PUBLIC_TC_OG_LOGO =
+    'https://cdn.sanity.io/images/c5o9hb8v/production/3c58d1a628c7d123b3636582549ececc882a85fa-800x800.jpg';
+
+  let cachedSeoBrand: { logoUrl: string; title: string; description: string; fetchedAt: number } | null = null;
+
+  const getCachedSeoBrand = async () => {
+    const now = Date.now();
+    if (cachedSeoBrand && now - cachedSeoBrand.fetchedAt < 60_000) {
+      return cachedSeoBrand;
+    }
+    try {
+      const fetched = await Promise.race([
+        fetchSiteDataFromSanity(),
+        new Promise<null>((resolve) => setTimeout(() => resolve(null), 800))
+      ]);
+      const brand = fetched?.data?.brand;
+      if (brand) {
+        const logoUrl =
+          brand.logoUrl && brand.logoUrl.startsWith('http')
+            ? brand.logoUrl
+            : PUBLIC_TC_OG_LOGO;
+        cachedSeoBrand = {
+          logoUrl,
+          title: `${brand.mainBrand || 'Tomy Creator'} — ${brand.directorName || 'Thomas Fotso'} | ${brand.flagshipProject || '237 Cinématique'}`,
+          description: `${brand.directorName || 'Thomas Fotso'} (${brand.mainBrand || 'Tomy Creator'}), réalisateur audiovisuel à Douala, Cameroun. Documentaires ${brand.flagshipProject || '237 Cinématique'}, films d'entreprise et sport. Demandez votre devis.`,
+          fetchedAt: now
+        };
+        return cachedSeoBrand;
+      }
+    } catch {
+      // Keep fast fallback
+    }
+    return null;
+  };
+
   const resolveOrigin = (req: express.Request): string => {
+    const forwardedHost = (req.headers['x-forwarded-host'] as string)?.split(',')[0]?.trim();
+    const rawHost = forwardedHost || req.headers.host || '';
+    if (rawHost && !rawHost.startsWith('localhost') && !rawHost.startsWith('127.0.0.1') && !rawHost.startsWith('0.0.0.0')) {
+      const proto = ((req.headers['x-forwarded-proto'] as string) || 'https').split(',')[0].trim();
+      return `${proto}://${rawHost}`;
+    }
     const envUrl = (process.env.APP_URL || '').trim().replace(/\/+$/, '');
     if (envUrl && !envUrl.includes('MY_APP_URL')) return envUrl;
-    const proto = (req.headers['x-forwarded-proto'] as string) || req.protocol || 'https';
-    const host = req.headers.host || 'localhost:3000';
-    return `${proto}://${host}`;
+    return `http://${rawHost || 'localhost:3000'}`;
   };
 
   app.get('/robots.txt', (req, res) => {
@@ -518,26 +557,17 @@ async function startServer() {
     );
   });
 
-  // Rewrites OpenGraph / WhatsApp preview tags in raw SSR HTML so non-JS crawlers (WhatsApp, X, Facebook)
-  // always receive the live HTTPS host, crisp TC logo (/og-logo-tc.jpg), and up-to-date description.
+  // Rewrites OpenGraph / WhatsApp preview tags in raw SSR HTML in <1ms so WhatsApp crawler
+  // immediately receives the public CDN TC logo, exact shared origin, and crisp site description.
   const injectDynamicHtmlSeo = async (rawHtml: string, req: express.Request): Promise<string> => {
     const origin = resolveOrigin(req);
     const reqPath = (req.originalUrl || '/').split('?')[0] || '/';
     const canonicalUrl = `${origin}${reqPath === '/' ? '/' : reqPath}`;
-    let ogImageUrl = `${origin}/og-logo-tc.jpg`;
-
-    try {
-      const cached = await fetchSiteDataFromSanity();
-      const customLogo = cached?.data?.brand?.logoUrl;
-      if (customLogo && customLogo.startsWith('http')) {
-        ogImageUrl = customLogo;
-      }
-    } catch {
-      // Keep default optimized /og-logo-tc.jpg
-    }
+    const seoBrand = await getCachedSeoBrand();
+    const ogImageUrl = seoBrand?.logoUrl || PUBLIC_TC_OG_LOGO;
 
     return rawHtml
-      .replaceAll('https://ais-pre-xjilhi3dvoeq4piieichav-323022168140.europe-west2.run.app/og-logo-tc.jpg', ogImageUrl)
+      .replaceAll(PUBLIC_TC_OG_LOGO, ogImageUrl)
       .replace(
         /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i,
         `<link rel="canonical" href="${canonicalUrl}" />`
