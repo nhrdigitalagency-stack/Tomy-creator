@@ -1,0 +1,6 @@
+{
+  "name": "Tomy Creator — Thomas Fotso & 237 Cinématique",
+  "description": "Portfolio officiel de Thomas Fotso (Tomy Creator), réalisateur et créateur audiovisuel au Cameroun, et présentation du projet documentaire 237 Cinématique.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,279 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root,
+[data-theme="dark"] {
+  --bg-cinema: #06070A;
+  --bg-surface: #0F131A;
+  --bg-elevated: #171D28;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --accent-primary: #E51D2A;
+  --accent-hover: #F42C39;
+  --accent-subtle: rgba(229, 29, 42, 0.18);
+  --glass-bg: rgba(15, 19, 26, 0.68);
+  --glass-bg-strong: rgba(10, 13, 20, 0.86);
+  --glass-fallback: rgba(12, 15, 22, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-border-accent: rgba(229, 29, 42, 0.52);
+  --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  --glass-blur: 18px;
+  --card-inner-bg: rgba(0, 0, 0, 0.55);
+  --input-bg: rgba(8, 10, 15, 0.85);
+}
+
+[data-theme="light"] {
+  --bg-cinema: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #F1F5F9;
+  --text-primary: #090D16;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --accent-primary: #D91623;
+  --accent-hover: #B8111D;
+  --accent-subtle: rgba(217, 22, 35, 0.12);
+  --glass-bg: rgba(255, 255, 255, 0.84);
+  --glass-bg-strong: rgba(255, 255, 255, 0.94);
+  --glass-fallback: rgba(255, 255, 255, 0.97);
+  --glass-border: rgba(15, 23, 42, 0.12);
+  --glass-border-accent: rgba(217, 22, 35, 0.45);
+  --glass-shadow: 0 18px 42px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --glass-blur: 18px;
+  --card-inner-bg: rgba(241, 245, 249, 0.9);
+  --input-bg: rgba(255, 255, 255, 0.95);
+}
+
+@layer base {
+  html, body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-cinema);
+    color: var(--text-primary);
+    scroll-behavior: smooth;
+    letter-spacing: 0.01em;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, .font-serif-display {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  p, li {
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+}
+
+/* Controlled Glassmorphism System with Optimal Legibility in both Dark & Light Modes */
+.glass-panel {
+  background: var(--glass-fallback);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.5rem;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.3s ease;
+}
+
+@supports (backdrop-filter: blur(18px)) or (-webkit-backdrop-filter: blur(18px)) {
+  .glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+  }
+}
+
+.glass-panel-strong {
+  background: var(--glass-fallback);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.75rem;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.3s ease;
+}
+
+@supports (backdrop-filter: blur(18px)) or (-webkit-backdrop-filter: blur(18px)) {
+  .glass-panel-strong {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+  }
+}
+
+/* Automatic High-Contrast Adaptation in Light Mode for Non-Photographic Surfaces */
+[data-theme="light"] .theme-adaptive-surface {
+  background-color: var(--card-inner-bg);
+  border-color: var(--glass-border);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .theme-adaptive-input {
+  background-color: var(--input-bg) !important;
+  border-color: rgba(15, 23, 42, 0.18) !important;
+  color: #090D16 !important;
+}
+
+[data-theme="light"] .theme-adaptive-input::placeholder {
+  color: #64748B !important;
+}
+
+/* Keep photographic stages (Hero, Image Overlays) dark-scrimmed with crisp white text in both modes */
+.cinema-stage-dark {
+  color: #F8FAFC;
+}
+
+/* Premium Hover Effects for Cards & Buttons */
+.card-hover-cinema {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover-cinema::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 80%
+  );
+  transform: translateX(-110%);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.card-hover-cinema:hover {
+  transform: translateY(-6px) scale(1.008);
+  border-color: var(--glass-border-accent);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.25),
+              0 0 28px var(--accent-subtle);
+}
+
+.card-hover-cinema:hover::after {
+  transform: translateX(110%);
+}
+
+/* Interactive Button Shimmer & Lift */
+.btn-cinema-glow {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease;
+}
+
+.btn-cinema-glow:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 30px var(--accent-subtle);
+}
+
+.btn-cinema-glow:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Editorial Marquee Track */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 32s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-partners-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 26s linear infinite;
+}
+
+.marquee-partners-track:hover {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbars on horizontal filter bars while keeping touch scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Reduce GPU blur cost on mobile screens */
+@media (max-width: 768px) {
+  :root,
+  [data-theme="dark"],
+  [data-theme="light"] {
+    --glass-blur: 10px;
+  }
+}
+
+/* Cinema Scrims for high-contrast legibility over photography */
+.scrim-bottom {
+  background: linear-gradient(
+    to top,
+    rgba(6, 7, 10, 0.92) 0%,
+    rgba(6, 7, 10, 0.45) 45%,
+    rgba(6, 7, 10, 0.05) 100%
+  );
+}
+
+/* Crystal-Clear Hero Red-Black Gradient Overlay:
+   Leaves the subject & photography vivid and clearly visible while providing
+   a directional red-black cinema gradient behind the text and bottom bar */
+.hero-red-black-overlay {
+  background:
+    linear-gradient(
+      95deg,
+      rgba(6, 7, 10, 0.86) 0%,
+      rgba(120, 12, 22, 0.46) 36%,
+      rgba(229, 29, 42, 0.14) 62%,
+      rgba(6, 7, 10, 0.12) 100%
+    ),
+    linear-gradient(
+      to top,
+      rgba(6, 7, 10, 0.90) 0%,
+      rgba(165, 16, 28, 0.22) 28%,
+      rgba(6, 7, 10, 0.04) 65%,
+      rgba(6, 7, 10, 0.38) 100%
+    );
+}
+
+/* Tabular numerals for metrics, durations, and dates */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
