@@ -59,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({
                 {t('Créateur du projet', 'Creator of')} {brand.flagshipProject}
               </span>
               <span aria-hidden="true">·</span>
-              <span>Douala & Cameroun (+237)</span>
+              <span>Yaoundé & Cameroun (+237)</span>
             </div>
 
             <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-md leading-relaxed">
@@ -198,7 +198,7 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <span>
-              Douala, Cameroun (+237) · {brand.whatsappDisplay} · {brand.contactEmail}
+              Yaoundé, Cameroun (+237) · {brand.whatsappDisplay} · {brand.contactEmail}
             </span>
             <button
               type="button"

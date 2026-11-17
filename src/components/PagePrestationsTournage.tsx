@@ -82,7 +82,7 @@ export const PagePrestationsTournage: React.FC<PagePrestationsTournageProps> = (
   );
   const [aptDate, setAptDate] = useState('');
   const [aptSlot, setAptSlot] = useState(timeSlots[0]);
-  const [aptCity, setAptCity] = useState('Douala / Yaoundé');
+  const [aptCity, setAptCity] = useState('Yaoundé, Cameroun');
   const [aptTopic, setAptTopic] = useState(initialSelectedService || '');
   const [aptState, setAptState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [aptError, setAptError] = useState('');
@@ -96,7 +96,7 @@ export const PagePrestationsTournage: React.FC<PagePrestationsTournageProps> = (
   const [projectType, setProjectType] = useState(
     initialSelectedService || services[0]?.title || 'Documentaires Cinématographiques'
   );
-  const [location, setLocation] = useState('Douala / Yaoundé');
+  const [location, setLocation] = useState('Yaoundé, Cameroun');
   const [desiredDate, setDesiredDate] = useState('');
   const [selectedDeliverables, setSelectedDeliverables] = useState<string[]>([
     DELIVERABLE_OPTIONS[0]
@@ -169,7 +169,7 @@ export const PagePrestationsTournage: React.FC<PagePrestationsTournageProps> = (
         meetingType: aptType,
         preferredDate: aptDate,
         preferredTimeSlot: aptSlot,
-        city: aptCity.trim() || 'Douala / Cameroun (+237)',
+        city: aptCity.trim() || 'Yaoundé / Cameroun (+237)',
         topic: aptTopic.trim() || 'Cadrage de projet audiovisuel'
       });
 
@@ -220,7 +220,7 @@ export const PagePrestationsTournage: React.FC<PagePrestationsTournageProps> = (
         email: email.trim() || 'Non précisé',
         phoneWhatsapp: phoneWhatsapp.trim(),
         projectType,
-        location: location.trim() || 'Douala / Cameroun (+237)',
+        location: location.trim() || 'Yaoundé / Cameroun (+237)',
         desiredDate: desiredDate.trim() || 'Dates flexibles',
         deliverables: deliverablesStr,
         narrativeBrief: narrativeBrief.trim()
@@ -262,8 +262,8 @@ export const PagePrestationsTournage: React.FC<PagePrestationsTournageProps> = (
           <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--accent-primary)] font-semibold tracking-wide">
             <span>
               {t(
-                'PRESTATIONS AUDIOVISUELLES & PHOTOGRAPHIQUES · DOUALA & CAMEROUN',
-                'AUDIOVISUAL & PHOTOGRAPHY SERVICES · DOUALA & CAMEROON'
+                'PRESTATIONS AUDIOVISUELLES & PHOTOGRAPHIQUES · YAOUNDÉ & CAMEROUN',
+                'AUDIOVISUAL & PHOTOGRAPHY SERVICES · YAOUNDÉ & CAMEROON'
               )}
             </span>
             <span aria-hidden="true">·</span>
@@ -472,8 +472,8 @@ export const PagePrestationsTournage: React.FC<PagePrestationsTournageProps> = (
                 </h2>
                 <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
                   {t(
-                    'Choisissez entre une prise de rendez-vous rapide (appel découverte, visioconférence ou rencontre sur site à Douala/Yaoundé) ou un brief complet de tournage.',
-                    'Choose between a quick appointment booking (discovery call, video conference, or on-site meeting in Douala/Yaoundé) or a full shooting brief.'
+                    'Choisissez entre une prise de rendez-vous rapide (appel découverte, visioconférence ou rencontre sur site à Yaoundé/Douala) ou un brief complet de tournage.',
+                    'Choose between a quick appointment booking (discovery call, video conference, or on-site meeting in Yaoundé/Douala) or a full shooting brief.'
                   )}
                 </p>
               </div>
@@ -824,7 +824,7 @@ export const PagePrestationsTournage: React.FC<PagePrestationsTournageProps> = (
                             type="text"
                             value={aptCity}
                             onChange={(e) => setAptCity(e.target.value)}
-                            placeholder="Douala, Yaoundé..."
+                            placeholder="Yaoundé, Douala..."
                             className="theme-adaptive-input w-full px-4 py-3 rounded-2xl bg-black/80 border border-white/15 text-sm text-white focus:outline-none focus:border-[var(--accent-primary)]"
                           />
                         </div>
@@ -1085,7 +1085,7 @@ export const PagePrestationsTournage: React.FC<PagePrestationsTournageProps> = (
                           type="text"
                           value={location}
                           onChange={(e) => setLocation(e.target.value)}
-                          placeholder="Douala, Yaoundé, Kribi..."
+                          placeholder="Yaoundé, Douala, Kribi..."
                           className="theme-adaptive-input w-full px-4 py-3 rounded-2xl bg-black/80 border border-white/15 text-sm text-white focus:outline-none focus:border-[var(--accent-primary)]"
                         />
                       </div>

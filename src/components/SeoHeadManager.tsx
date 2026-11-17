@@ -49,12 +49,12 @@ export const SeoHeadManager: React.FC<SeoHeadManagerProps> = ({ activePage, data
       }
     > = {
       accueil: {
-        titleFr: 'Tomy Creator — Réalisateur & 237 Cinématique | Douala',
-        titleEn: 'Tomy Creator — Film Director & 237 Cinématique | Douala',
+        titleFr: 'Tomy Creator — Réalisateur & 237 Cinématique | Yaoundé',
+        titleEn: 'Tomy Creator — Film Director & 237 Cinématique | Yaoundé',
         descFr:
-          "Thomas Fotso (Tomy Creator), réalisateur audiovisuel à Douala, Cameroun. Documentaires 237 Cinématique, films d'entreprise et sport. Demandez votre devis.",
+          "Thomas Fotso (Tomy Creator), réalisateur audiovisuel à Yaoundé, Cameroun. Documentaires 237 Cinématique, films d'entreprise et sport. Demandez votre devis.",
         descEn:
-          'Thomas Fotso (Tomy Creator), film director in Douala, Cameroon. 237 Cinématique documentaries, corporate films & sports coverage. Request your quote.',
+          'Thomas Fotso (Tomy Creator), film director in Yaoundé, Cameroon. 237 Cinématique documentaries, corporate films & sports coverage. Request your quote.',
         breadcrumbFr: 'Accueil',
         breadcrumbEn: 'Home'
       },
@@ -69,8 +69,8 @@ export const SeoHeadManager: React.FC<SeoHeadManagerProps> = ({ activePage, data
         breadcrumbEn: '237 Cinématique'
       },
       portfolio: {
-        titleFr: 'Portfolio Vidéo & Photo — Tomy Creator Douala (+237)',
-        titleEn: 'Video & Photo Portfolio — Tomy Creator Douala (+237)',
+        titleFr: 'Portfolio Vidéo & Photo — Tomy Creator Yaoundé (+237)',
+        titleEn: 'Video & Photo Portfolio — Tomy Creator Yaoundé (+237)',
         descFr:
           'Découvrez le portfolio photo et vidéo de Thomas Fotso : captation sportive en stade, portraits éditoriaux, films corporate et mobile filmmaking.',
         descEn:
@@ -79,12 +79,12 @@ export const SeoHeadManager: React.FC<SeoHeadManagerProps> = ({ activePage, data
         breadcrumbEn: 'Portfolio'
       },
       prestations: {
-        titleFr: 'Prestations Audiovisuelles & FAQ — Tomy Creator Douala',
-        titleEn: 'Audiovisual Services & FAQ — Tomy Creator Douala',
+        titleFr: 'Prestations Audiovisuelles & FAQ — Tomy Creator Yaoundé',
+        titleEn: 'Audiovisual Services & FAQ — Tomy Creator Yaoundé',
         descFr:
-          "Documentaires, films d'entreprise, captation sportive et formats courts à Douala & Cameroun. Consultez nos prestations, FAQ et prenez rendez-vous.",
+          "Documentaires, films d'entreprise, captation sportive et formats courts à Yaoundé & Cameroun. Consultez nos prestations, FAQ et prenez rendez-vous.",
         descEn:
-          'Documentaries, corporate films, sports coverage, and short-form video in Douala & Cameroon. View services, FAQs, and book a consultation.',
+          'Documentaries, corporate films, sports coverage, and short-form video in Yaoundé & Cameroon. View services, FAQs, and book a consultation.',
         breadcrumbFr: 'Prestations & FAQ',
         breadcrumbEn: 'Services & FAQ'
       },
@@ -92,9 +92,9 @@ export const SeoHeadManager: React.FC<SeoHeadManagerProps> = ({ activePage, data
         titleFr: 'Prendre RDV & Devis Tournage — Tomy Creator Cameroun',
         titleEn: 'Book a Shoot & Request Quote — Tomy Creator Cameroon',
         descFr:
-          'Réservez un créneau de rendez-vous ou soumettez votre brief de tournage vidéo/photo à Douala et au Cameroun. Réponse sous 24h sur WhatsApp ou e-mail.',
+          'Réservez un créneau de rendez-vous ou soumettez votre brief de tournage vidéo/photo à Yaoundé et au Cameroun. Réponse sous 24h sur WhatsApp ou e-mail.',
         descEn:
-          'Book an appointment slot or submit your video/photo production brief in Douala and Cameroon. Fast response within 24h via WhatsApp or email.',
+          'Book an appointment slot or submit your video/photo production brief in Yaoundé and Cameroon. Fast response within 24h via WhatsApp or email.',
         breadcrumbFr: 'Prise de RDV & Tournage',
         breadcrumbEn: 'Book a Call & Shoot'
       },

@@ -43,8 +43,8 @@ export const PageActualites: React.FC<PageActualitesProps> = ({
           </h1>
           <p className="text-sm sm:text-base text-[var(--text-secondary)]">
             {t(
-              'Suivez l’évolution du projet 237 Cinématique, les carnets de terrain de Thomas Fotso et les actualités de production à Douala et au Cameroun.',
-              'Follow the evolution of 237 Cinématique, Thomas Fotso’s field notes, and production news in Douala and Cameroon.'
+              'Suivez l’évolution du projet 237 Cinématique, les carnets de terrain de Thomas Fotso et les actualités de production à Yaoundé et au Cameroun.',
+              'Follow the evolution of 237 Cinématique, Thomas Fotso’s field notes, and production news in Yaoundé and Cameroon.'
             )}
           </p>
         </div>

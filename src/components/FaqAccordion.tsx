@@ -68,8 +68,8 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({
           </h2>
           <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
             {t(
-              'Tarifs sur mesure, délais de réservation à Douala et dans tout le Cameroun (+237), et étapes concrètes de réalisation.',
-              'Custom pricing, booking lead times across Douala and Cameroon (+237), and concrete production steps.'
+              'Tarifs sur mesure, délais de réservation à Yaoundé et dans tout le Cameroun (+237), et étapes concrètes de réalisation.',
+              'Custom pricing, booking lead times across Yaoundé and Cameroon (+237), and concrete production steps.'
             )}
           </p>
         </div>

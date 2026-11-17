@@ -324,9 +324,9 @@ export const INITIAL_SITE_DATA: SiteData = {
     collectiveOriginNarrative:
       "Imaginé par une génération de vidéastes, photographes et créateurs passionnés par le storytelling visuel — et dirigé dans l'univers de réalisation de Thomas Fotso (Tomy Creator) — 237 Cinématique transforme la manière dont le Cameroun est raconté à l'écran.",
     directorBioShort:
-      "Réalisateur et créateur de contenu audiovisuel basé à Douala au Cameroun, Thomas Fotso — connu sous la signature Tomy Creator — façonne des récits visuels où la rigueur du cadrage rencontre l'émotion documentaire.",
+      "Réalisateur et créateur de contenu audiovisuel basé à Yaoundé au Cameroun, Thomas Fotso — connu sous la signature Tomy Creator — façonne des récits visuels où la rigueur du cadrage rencontre l'émotion documentaire.",
     directorBioShortEn:
-      "Film director and audiovisual creator based in Douala, Cameroon, Thomas Fotso — known under the signature Tomy Creator — crafts visual stories where framing precision meets documentary emotion.",
+      "Film director and audiovisual creator based in Yaoundé, Cameroon, Thomas Fotso — known under the signature Tomy Creator — crafts visual stories where framing precision meets documentary emotion.",
     directorBioLong:
       "De la captation sportive au ras de la pelouse jusqu'à la réalisation documentaire, aux émissions télévisées et aux films de marque pour des entreprises de référence, Thomas Fotso explore chaque sujet avec une exigence cinématographique. Avec son projet éditorial phare 237 Cinématique, il pose un regard neuf, structuré et lumineux sur les villes, les artisans, les entreprises et les paysages du Cameroun (+237).",
     directorBioLongEn:
@@ -340,8 +340,8 @@ export const INITIAL_SITE_DATA: SiteData = {
     whatsappIsProvisional: false,
     contactEmail: 'tomycreator@gmail.com',
     emailIsProvisional: false,
-    locationLabel: 'Douala & Yaoundé, Cameroun (+237) · Déplacements nationaux & internationaux',
-    locationLabelEn: 'Douala & Yaoundé, Cameroon (+237) · National & International shoots',
+    locationLabel: 'Yaoundé, Cameroun (+237) · Déplacements nationaux (Douala, 10 régions) & internationaux',
+    locationLabelEn: 'Yaoundé, Cameroon (+237) · Nationwide (Douala, 10 regions) & International shoots',
     instagramUrl: 'https://instagram.com',
     youtubeUrl: 'https://youtube.com',
     tiktokUrl: 'https://tiktok.com',
@@ -387,8 +387,8 @@ export const INITIAL_SITE_DATA: SiteData = {
       titleEn: 'The Art of Movement: Behind the Scenes & Perspectives',
       subtitle: 'Portrait d’une jeunesse créative qui réinvente la narration visuelle au +237',
       subtitleEn: 'Portrait of a creative generation reinventing visual storytelling in +237',
-      city: 'Douala & Yaoundé',
-      region: 'Littoral & Centre',
+      city: 'Yaoundé & Douala',
+      region: 'Centre & Littoral',
       mapCoords: { x: 52, y: 76 },
       theme: 'Artisan & Entreprise',
       themeEn: 'Artisan & Business',
@@ -476,7 +476,7 @@ export const INITIAL_SITE_DATA: SiteData = {
       categoryEn: 'Portrait & Art Direction',
       mediaType: 'Photo',
       imageUrl: '/assets/aistudio/IMG_8869.JPG_aa3dda67.jpeg',
-      location: 'Douala, Cameroun',
+      location: 'Yaoundé, Cameroun',
       year: '2025',
       cameraGear: 'Canon EOS DSLR · Téléobjectif zoom · Traitement N&B haut contraste',
       cameraGearEn: 'Canon EOS DSLR · Telephoto Zoom · High-Contrast B&W Grade',
@@ -541,7 +541,7 @@ export const INITIAL_SITE_DATA: SiteData = {
       categoryEn: 'Behind the Scenes & Mobile Filmmaking',
       mediaType: 'Photo',
       imageUrl: '/assets/aistudio/IMG_0964.JPG_3dfe2bbe.jpeg',
-      location: 'Douala, Cameroun',
+      location: 'Yaoundé, Cameroun',
       year: '2025',
       cameraGear: 'Stabilisateurs 3 axes DJI Osmo Mobile & iPhone Pro',
       cameraGearEn: 'DJI Osmo Mobile 3-Axis Gimbals & iPhone Pro',
@@ -585,7 +585,7 @@ export const INITIAL_SITE_DATA: SiteData = {
       mediaType: 'Vidéo',
       imageUrl: '/assets/aistudio/IMG_0964.JPG_3dfe2bbe.jpeg',
       videoUrl: '',
-      location: 'Douala / Yaoundé',
+      location: 'Yaoundé / Douala',
       year: '2025',
       cameraGear: 'Caméra cinéma & Stabilisation 3 axes · Prise de son dédiée',
       cameraGearEn: 'Cinema Camera & 3-Axis Gimbal · Dedicated Sound Recording',
@@ -761,7 +761,7 @@ export const INITIAL_SITE_DATA: SiteData = {
       contextTypeEn: 'Production & Behind the Scenes',
       rolePlayed: 'Direction de cadrage & Coordination binôme stabilisateur',
       rolePlayedEn: 'Camera Direction & Dual-Gimbal Coordination',
-      locationAndYear: 'Douala / Yaoundé · Plateau intérieur',
+      locationAndYear: 'Yaoundé / Douala · Plateau intérieur',
       factualDescription:
         "Mise en œuvre de dispositifs de prise de vue à double stabilisateur 3 axes pour des séquences fluides en intérieur et une narration visuelle agile en équipe.",
       factualDescriptionEn:
@@ -779,7 +779,7 @@ export const INITIAL_SITE_DATA: SiteData = {
       contextTypeEn: 'Brand & Media Productions',
       rolePlayed: 'Réalisation, Direction Artistique & Production Audiovisuelle',
       rolePlayedEn: 'Directing, Art Direction & Audiovisual Production',
-      locationAndYear: 'Douala & Cameroun (+237)',
+      locationAndYear: 'Yaoundé & Cameroun (+237)',
       factualDescription:
         "Accompagnement audiovisuel et collaborations réalisées avec Cimaco, Maison Orchelle, DMT Beauty, ARDUISK numérique, Reine du modélisme ainsi que la chaîne Cam10 dans le cadre de l’émission « On se lâche ».",
       factualDescriptionEn:
@@ -845,8 +845,8 @@ export const INITIAL_SITE_DATA: SiteData = {
       id: 'news-03',
       title: 'Entreprises, Mode, Beauté & Médias : l’écriture cinéma au service des marques',
       titleEn: 'Corporate, Fashion, Beauty & Media: cinema storytelling for brands',
-      date: 'Productions · Douala & Cameroun',
-      dateEn: 'Productions · Douala & Cameroon',
+      date: 'Productions · Yaoundé & Cameroun',
+      dateEn: 'Productions · Yaoundé & Cameroon',
       category: 'Prestations Tomy Creator',
       categoryEn: 'Tomy Creator Services',
       readTime: '2 min de lecture',
@@ -856,11 +856,11 @@ export const INITIAL_SITE_DATA: SiteData = {
       excerptEn:
         "From Cimaco to Maison Orchelle, DMT Beauty, ARDUISK numérique, Reine du modélisme, and Cam10 ('On se lâche'), discover how we support Cameroonian brands and media.",
       content: [
-        "Chaque entreprise a un parcours et chaque marque possède un savoir-faire qui mérite d'être filmé avec justesse. À Douala et dans tout le Cameroun, Tomy Creator accompagne des acteurs variés : industrie (Cimaco), mode et modélisme (Maison Orchelle, Reine du modélisme), cosmétique (DMT Beauty), technologie (ARDUISK numérique) et télévision (Cam10 dans l'émission « On se lâche »).",
+        "Chaque entreprise a un parcours et chaque marque possède un savoir-faire qui mérite d'être filmé avec justesse. À Yaoundé et dans tout le Cameroun, Tomy Creator accompagne des acteurs variés : industrie (Cimaco), mode et modélisme (Maison Orchelle, Reine du modélisme), cosmétique (DMT Beauty), technologie (ARDUISK numérique) et télévision (Cam10 dans l'émission « On se lâche »).",
         "Rendez-vous dans la rubrique Prestations & Tournage ou cliquez sur le bouton flottant Contacter (+237 6 94 92 58 51 / tomycreator@gmail.com) pour réserver un créneau de rendez-vous ou soumettre votre brief complet."
       ],
       contentEn: [
-        "Every company has a journey and every brand holds expertise that deserves to be filmed with precision. In Douala and across Cameroon, Tomy Creator partners with diverse leaders: industry (Cimaco), fashion and pattern design (Maison Orchelle, Reine du modélisme), beauty (DMT Beauty), tech (ARDUISK numérique), and TV media (Cam10 on the show 'On se lâche').",
+        "Every company has a journey and every brand holds expertise that deserves to be filmed with precision. In Yaoundé and across Cameroon, Tomy Creator partners with diverse leaders: industry (Cimaco), fashion and pattern design (Maison Orchelle, Reine du modélisme), beauty (DMT Beauty), tech (ARDUISK numérique), and TV media (Cam10 on the show 'On se lâche').",
         "Visit the Services & Booking page or click the floating Contact button (+237 6 94 92 58 51 / tomycreator@gmail.com) to book an appointment or submit your production brief."
       ],
       imageUrl: '/assets/aistudio/IMG_0964.JPG_3dfe2bbe.jpeg',
@@ -880,7 +880,7 @@ export const INITIAL_SITE_DATA: SiteData = {
         "Travailler avec Thomas Fotso (Tomy Creator), c'est bénéficier d'un regard de réalisateur qui sublime immédiatement l'identité d'une marque. Du cadrage à la lumière, chaque détail est pensé pour donner une dimension haut de gamme à nos créations et à nos équipes.",
       quoteEn:
         "Working with Thomas Fotso (Tomy Creator) means benefiting from a director's eye that immediately elevates brand identity. From framing to lighting, every detail is crafted to give a high-end dimension to our creations and teams.",
-      location: 'Douala · Cameroun',
+      location: 'Yaoundé · Cameroun',
       avatarUrl: '/assets/aistudio/IMG_8871.JPG_193971a0.jpeg',
       isProvisional: false
     },
@@ -896,7 +896,7 @@ export const INITIAL_SITE_DATA: SiteData = {
         "Que ce soit sur le plateau de l'émission « On se lâche » sur Cam10, dans un atelier de modélisme ou pour des contenus numériques innovants, Tomy Creator apporte un dynamisme, une fluidité de mouvement et une rigueur professionnelle remarquables.",
       quoteEn:
         "Whether on the set of 'On se lâche' on Cam10 TV, inside a fashion design studio, or producing innovative digital content, Tomy Creator brings remarkable energy, fluid camera movement, and professional rigor.",
-      location: 'Douala / Yaoundé · Cameroun',
+      location: 'Yaoundé / Douala · Cameroun',
       avatarUrl: '/assets/aistudio/IMG_0964.JPG_3dfe2bbe.jpeg',
       isProvisional: false
     },
@@ -951,12 +951,12 @@ export const INITIAL_SITE_DATA: SiteData = {
     {
       id: 'faq-04',
       category: 'Disponibilités & Délais',
-      question: 'Vous déplacez-vous à Douala, Yaoundé et dans toutes les régions du Cameroun (+237) ?',
-      questionEn: 'Do you travel across Douala, Yaoundé, and all regions of Cameroon (+237)?',
+      question: 'Vous déplacez-vous à Yaoundé, Douala et dans toutes les régions du Cameroun (+237) ?',
+      questionEn: 'Do you travel across Yaoundé, Douala, and all regions of Cameroon (+237)?',
       answer:
-        "Oui. Basé à Douala et actif à Yaoundé, l'ADN même de Tomy Creator et de 237 Cinématique est d'explorer les 10 régions du Cameroun (Littoral, Centre, Ouest, Sud, Nord, etc.) ainsi que d'accompagner nos clients à l'international.",
+        "Oui. Basé à Yaoundé, l'ADN même de Tomy Creator et de 237 Cinématique est d'explorer les 10 régions du Cameroun (Centre, Littoral/Douala, Ouest, Sud, Nord, etc.) ainsi que d'accompagner nos clients à l'international.",
       answerEn:
-        "Yes. Based in Douala and active in Yaoundé, the very DNA of Tomy Creator and 237 Cinématique is to explore all 10 regions of Cameroon as well as accompany clients internationally."
+        "Yes. Based in Yaoundé, the very DNA of Tomy Creator and 237 Cinématique is to explore all 10 regions of Cameroon (Centre, Littoral/Douala, West, South, North, etc.) as well as accompany clients internationally."
     },
     {
       id: 'faq-05',

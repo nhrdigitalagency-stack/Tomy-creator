@@ -502,7 +502,7 @@ async function startServer() {
         cachedSeoBrand = {
           logoUrl,
           title: `${brand.mainBrand || 'Tomy Creator'} — ${brand.directorName || 'Thomas Fotso'} | ${brand.flagshipProject || '237 Cinématique'}`,
-          description: `${brand.directorName || 'Thomas Fotso'} (${brand.mainBrand || 'Tomy Creator'}), réalisateur audiovisuel à Douala, Cameroun. Documentaires ${brand.flagshipProject || '237 Cinématique'}, films d'entreprise et sport. Demandez votre devis.`,
+          description: `${brand.directorName || 'Thomas Fotso'} (${brand.mainBrand || 'Tomy Creator'}), réalisateur audiovisuel à Yaoundé, Cameroun. Documentaires ${brand.flagshipProject || '237 Cinématique'}, films d'entreprise et sport. Demandez votre devis.`,
           fetchedAt: now
         };
         return cachedSeoBrand;

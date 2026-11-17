@@ -240,7 +240,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       mediaType,
       imageUrl: '/assets/aistudio/IMG_8871.JPG_193971a0.jpeg',
       videoUrl: mediaType === 'Vidéo' ? '' : undefined,
-      location: 'Douala, Cameroun',
+      location: 'Yaoundé, Cameroun',
       year: String(new Date().getFullYear()),
       cameraGear: 'Canon EOS · Stabilisation 3 axes',
       role: 'Réalisation — Thomas Fotso',
@@ -278,8 +278,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       title: 'Nouveau titre d’épisode 237 Cinématique',
       titleEn: 'New 237 Cinématique Episode Title',
       subtitle: 'Sous-titre éditorial du documentaire',
-      city: 'Douala',
-      region: 'Littoral',
+      city: 'Yaoundé',
+      region: 'Centre',
       mapCoords: { x: 35, y: 74 },
       theme: 'Ville & Quartier',
       duration: '07 min 30',
@@ -320,7 +320,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       organization: 'Entreprise',
       projectContext: 'Film d’entreprise / Captation',
       quote: 'Témoignage client sur la collaboration avec Tomy Creator.',
-      location: 'Douala · Cameroun',
+      location: 'Yaoundé · Cameroun',
       avatarUrl: '/assets/aistudio/IMG_8871.JPG_193971a0.jpeg',
       isProvisional: false
     };

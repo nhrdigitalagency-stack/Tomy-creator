@@ -238,7 +238,7 @@ export const PageAccueil: React.FC<PageAccueilProps> = ({
                     category: 'Thomas Fotso — Tomy Creator',
                     mediaType: 'Photo',
                     imageUrl: currentStill.src,
-                    location: 'Douala / Cameroun (+237)',
+                    location: 'Yaoundé / Cameroun (+237)',
                     dateOrYear: '2025',
                     description:
                       lang === 'en' ? currentStill.captionEn : currentStill.captionFr
@@ -260,8 +260,8 @@ export const PageAccueil: React.FC<PageAccueilProps> = ({
                   <span className="w-2.5 h-2.5 rounded-full bg-[#E51D2A] animate-pulse" />
                   <span>
                     {t(
-                      'RÉALISATION CINÉMATOGRAPHIQUE · DOUALA & CAMEROUN (+237)',
-                      'CINEMATIC FILMMAKING · DOUALA & CAMEROON (+237)'
+                      'RÉALISATION CINÉMATOGRAPHIQUE · YAOUNDÉ & CAMEROUN (+237)',
+                      'CINEMATIC FILMMAKING · YAOUNDÉ & CAMEROON (+237)'
                     )}
                   </span>
                 </div>
@@ -446,8 +446,8 @@ export const PageAccueil: React.FC<PageAccueilProps> = ({
               tag: t('01 · SIGNATURE PRINCIPALE', '01 · MAIN SIGNATURE'),
               title: 'Tomy Creator',
               desc: t(
-                'Direction artistique, cadrage et réalisation par Thomas Fotso à Douala & au Cameroun.',
-                'Art direction, framing, and filmmaking by Thomas Fotso in Douala & Cameroon.'
+                'Direction artistique, cadrage et réalisation par Thomas Fotso à Yaoundé & au Cameroun.',
+                'Art direction, framing, and filmmaking by Thomas Fotso in Yaoundé & Cameroon.'
               )
             },
             {
@@ -562,7 +562,7 @@ export const PageAccueil: React.FC<PageAccueilProps> = ({
                 'DOCUMENTARY FILMMAKING',
                 'SPORTS & STADIUM COVERAGE',
                 'CORPORATE & BRAND FILMS',
-                'DOUALA · CAMEROON (+237)'
+                'YAOUNDÉ · CAMEROON (+237)'
               ]
             : undefined
         }

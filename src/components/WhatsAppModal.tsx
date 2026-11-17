@@ -71,7 +71,7 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({
   // WhatsApp Message State
   const [senderName, setSenderName] = useState('');
   const [selectedTopic, setSelectedTopic] = useState(initialTopic || topics[0]);
-  const [city, setCity] = useState('Douala / Yaoundé');
+  const [city, setCity] = useState('Yaoundé, Cameroun');
   const [customDetails, setCustomDetails] = useState('');
   const [copied, setCopied] = useState(false);
 
@@ -134,7 +134,7 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({
         meetingType: aptType,
         preferredDate: aptDate,
         preferredTimeSlot: aptSlot,
-        city: city.trim() || 'Douala / Cameroun (+237)',
+        city: city.trim() || 'Yaoundé / Cameroun (+237)',
         topic: aptTopic.trim() || 'Échange sur un projet audiovisuel'
       });
     }
@@ -308,7 +308,7 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    placeholder="Douala, Yaoundé..."
+                    placeholder="Yaoundé, Douala..."
                     className="theme-adaptive-input w-full px-3.5 py-2.5 rounded-2xl bg-black/80 border border-white/15 text-xs sm:text-sm text-white focus:outline-none focus:border-[var(--accent-primary)]"
                   />
                 </div>
