@@ -26,9 +26,12 @@ export const SeoHeadManager: React.FC<SeoHeadManagerProps> = ({ activePage, data
     const origin = window.location.origin;
     const routePath = ROUTE_PATHS[activePage] || '/';
     const canonicalUrl = `${origin}${routePath}`;
-    const fullLogoUrl = data.brand.logoUrl.startsWith('http')
-      ? data.brand.logoUrl
-      : `${origin}${data.brand.logoUrl}`;
+    const rawLogo = data.brand.logoUrl || '/og-logo-tc.jpg';
+    const fullLogoUrl = rawLogo.startsWith('http')
+      ? rawLogo
+      : rawLogo.includes('WhatsApp_Image_2026-11-16_at_10.25.07_b5ed22ad')
+        ? `${origin}/og-logo-tc.jpg`
+        : `${origin}${rawLogo}`;
 
     // Optimal SEO titles (35-60 chars) & meta descriptions (120-160 chars) per route and language
     const seoMap: Record<

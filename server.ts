@@ -518,6 +518,36 @@ async function startServer() {
     );
   });
 
+  // Rewrites OpenGraph / WhatsApp preview tags in raw SSR HTML so non-JS crawlers (WhatsApp, X, Facebook)
+  // always receive the live HTTPS host, crisp TC logo (/og-logo-tc.jpg), and up-to-date description.
+  const injectDynamicHtmlSeo = async (rawHtml: string, req: express.Request): Promise<string> => {
+    const origin = resolveOrigin(req);
+    const reqPath = (req.originalUrl || '/').split('?')[0] || '/';
+    const canonicalUrl = `${origin}${reqPath === '/' ? '/' : reqPath}`;
+    let ogImageUrl = `${origin}/og-logo-tc.jpg`;
+
+    try {
+      const cached = await fetchSiteDataFromSanity();
+      const customLogo = cached?.data?.brand?.logoUrl;
+      if (customLogo && customLogo.startsWith('http')) {
+        ogImageUrl = customLogo;
+      }
+    } catch {
+      // Keep default optimized /og-logo-tc.jpg
+    }
+
+    return rawHtml
+      .replaceAll('https://ais-pre-xjilhi3dvoeq4piieichav-323022168140.europe-west2.run.app/og-logo-tc.jpg', ogImageUrl)
+      .replace(
+        /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i,
+        `<link rel="canonical" href="${canonicalUrl}" />`
+      )
+      .replace(
+        /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i,
+        `<meta property="og:url" content="${canonicalUrl}" />`
+      );
+  };
+
   // Vite dev middleware or static production serving
   if (process.env.NODE_ENV !== 'production') {
     const { createServer: createViteServer } = await import('vite');
@@ -525,11 +555,41 @@ async function startServer() {
       server: { middlewareMode: true },
       appType: 'spa'
     });
+
+    app.use(async (req, res, next) => {
+      const url = req.originalUrl || '/';
+      const cleanPath = url.split('?')[0];
+      const isViteOrStatic =
+        cleanPath.startsWith('/api/') ||
+        cleanPath.startsWith('/@') ||
+        cleanPath.startsWith('/src/') ||
+        cleanPath.startsWith('/node_modules/') ||
+        cleanPath.startsWith('/assets/') ||
+        /\.[a-zA-Z0-9]+$/.test(cleanPath);
+
+      if (req.method !== 'GET' || isViteOrStatic) {
+        next();
+        return;
+      }
+
+      try {
+        const indexPath = path.resolve(__dirname, 'index.html');
+        let template = fs.readFileSync(indexPath, 'utf-8');
+        template = await injectDynamicHtmlSeo(template, req);
+        const transformed = await vite.transformIndexHtml(url, template);
+        res.status(200).set({ 'Content-Type': 'text/html' }).end(transformed);
+      } catch (err) {
+        vite.ssrFixStacktrace(err as Error);
+        next(err);
+      }
+    });
+
     app.use(vite.middlewares);
   } else {
     const distPath = path.resolve(__dirname, 'dist');
     app.use(
       express.static(distPath, {
+        index: false,
         maxAge: '7d',
         etag: true,
         setHeaders: (res, filePath) => {
@@ -539,10 +599,12 @@ async function startServer() {
         }
       })
     );
-    app.get('*', (_req, res) => {
+    app.get('*', async (req, res) => {
       const indexHtml = path.join(distPath, 'index.html');
       if (fs.existsSync(indexHtml)) {
-        res.sendFile(indexHtml);
+        const raw = fs.readFileSync(indexHtml, 'utf-8');
+        const hydrated = await injectDynamicHtmlSeo(raw, req);
+        res.status(200).set({ 'Content-Type': 'text/html', 'Cache-Control': 'no-cache' }).send(hydrated);
       } else {
         res.status(404).send('Build not found. Run npm run build first.');
       }

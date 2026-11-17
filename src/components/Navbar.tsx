@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Calendar, ArrowRight, Sun, Moon, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useThemeLanguage } from '../context/ThemeLanguageContext';
+import { ResilientImage } from './ResilientImage';
 
 export type PageRoute =
   | 'accueil'
@@ -89,11 +90,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={() => handleSelect('accueil')}
           className="flex items-center gap-2.5 sm:gap-3 text-left group min-w-0 shrink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent-primary)]"
         >
-          <img
+          <ResilientImage
             src={logoUrl}
             alt={brandName}
-            referrerPolicy="no-referrer"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover border border-[var(--glass-border)] shrink-0 transition-transform duration-300 group-hover:scale-105"
+            priority
+            sizes="48px"
+            pictureClassName="w-9 h-9 sm:w-10 sm:h-10 shrink-0 block"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover border border-[var(--glass-border)] transition-transform duration-300 group-hover:scale-105"
           />
           <div className="min-w-0">
             <span className="block text-sm sm:text-lg lg:text-xl font-bold tracking-wider uppercase text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors truncate leading-tight">

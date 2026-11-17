@@ -3,6 +3,7 @@ import { BrandConfig } from '../data/siteContent';
 import { PageRoute } from './Navbar';
 import { MessageCircle, FileText, Share2, Phone, Mail, MapPin, Settings } from 'lucide-react';
 import { useThemeLanguage } from '../context/ThemeLanguageContext';
+import { ResilientImage } from './ResilientImage';
 
 interface FooterProps {
   brand: BrandConfig;
@@ -35,11 +36,12 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Brand Identity Column with Official TC Logo */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3.5">
-              <img
+              <ResilientImage
                 src={brand.logoUrl}
                 alt={`Logo ${brand.mainBrand}`}
-                referrerPolicy="no-referrer"
-                className="w-14 h-14 rounded-2xl object-cover border border-[var(--glass-border)] shrink-0"
+                sizes="64px"
+                pictureClassName="w-14 h-14 shrink-0 block"
+                className="w-14 h-14 rounded-2xl object-cover border border-[var(--glass-border)]"
               />
               <div>
                 <div className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] tracking-wider uppercase">

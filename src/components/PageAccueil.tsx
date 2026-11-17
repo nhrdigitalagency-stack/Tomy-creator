@@ -170,6 +170,7 @@ export const PageAccueil: React.FC<PageAccueilProps> = ({
                   src={currentStill.src}
                   alt={lang === 'en' ? currentStill.captionEn : currentStill.captionFr}
                   priority={activeHeroStill === 0}
+                  sizes="100vw"
                   className={`w-full h-full object-cover ${currentStill.objectPosition} brightness-[1.06] contrast-[1.04]`}
                 />
               </motion.div>
@@ -428,6 +429,7 @@ export const PageAccueil: React.FC<PageAccueilProps> = ({
                     <ResilientImage
                       src={still.src}
                       alt={lang === 'en' ? still.labelEn : still.labelFr}
+                      sizes="96px"
                       className="w-full h-full object-cover"
                     />
                   </motion.button>
@@ -832,6 +834,11 @@ export const PageAccueil: React.FC<PageAccueilProps> = ({
                     <ResilientImage
                       src={item.imageUrl}
                       alt={lang === 'en' && item.titleEn ? item.titleEn : item.title}
+                      sizes={
+                        index === 0 || index === 3
+                          ? '(max-width: 768px) 100vw, 58vw'
+                          : '(max-width: 768px) 100vw, 42vw'
+                      }
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 scrim-bottom" />
