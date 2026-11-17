@@ -477,6 +477,47 @@ async function startServer() {
     }
   });
 
+  // Dynamic SEO endpoints (robots.txt & sitemap.xml resolved to live origin / APP_URL)
+  const resolveOrigin = (req: express.Request): string => {
+    const envUrl = (process.env.APP_URL || '').trim().replace(/\/+$/, '');
+    if (envUrl && !envUrl.includes('MY_APP_URL')) return envUrl;
+    const proto = (req.headers['x-forwarded-proto'] as string) || req.protocol || 'https';
+    const host = req.headers.host || 'localhost:3000';
+    return `${proto}://${host}`;
+  };
+
+  app.get('/robots.txt', (req, res) => {
+    const origin = resolveOrigin(req);
+    res.type('text/plain');
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    res.send(`User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${origin}/sitemap.xml\n`);
+  });
+
+  app.get('/sitemap.xml', (req, res) => {
+    const origin = resolveOrigin(req);
+    const today = new Date().toISOString().split('T')[0];
+    const routes = [
+      { path: '/', priority: '1.0', changefreq: 'weekly' },
+      { path: '/237-cinematique', priority: '0.9', changefreq: 'weekly' },
+      { path: '/portfolio', priority: '0.9', changefreq: 'weekly' },
+      { path: '/prestations', priority: '0.8', changefreq: 'monthly' },
+      { path: '/tournage', priority: '0.8', changefreq: 'monthly' },
+      { path: '/actualites', priority: '0.7', changefreq: 'weekly' }
+    ];
+    const urlsXml = routes
+      .map(
+        (r) =>
+          `  <url>\n    <loc>${origin}${r.path}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${r.changefreq}</changefreq>\n    <priority>${r.priority}</priority>\n  </url>`
+      )
+      .join('\n');
+
+    res.type('application/xml');
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    res.send(
+      `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urlsXml}\n</urlset>\n`
+    );
+  });
+
   // Vite dev middleware or static production serving
   if (process.env.NODE_ENV !== 'production') {
     const { createServer: createViteServer } = await import('vite');
@@ -487,7 +528,17 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     const distPath = path.resolve(__dirname, 'dist');
-    app.use(express.static(distPath));
+    app.use(
+      express.static(distPath, {
+        maxAge: '7d',
+        etag: true,
+        setHeaders: (res, filePath) => {
+          if (filePath.endsWith('.html')) {
+            res.setHeader('Cache-Control', 'no-cache');
+          }
+        }
+      })
+    );
     app.get('*', (_req, res) => {
       const indexHtml = path.join(distPath, 'index.html');
       if (fs.existsSync(indexHtml)) {

@@ -169,6 +169,7 @@ export const PageAccueil: React.FC<PageAccueilProps> = ({
                 <ResilientImage
                   src={currentStill.src}
                   alt={lang === 'en' ? currentStill.captionEn : currentStill.captionFr}
+                  priority={activeHeroStill === 0}
                   className={`w-full h-full object-cover ${currentStill.objectPosition} brightness-[1.06] contrast-[1.04]`}
                 />
               </motion.div>

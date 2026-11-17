@@ -26,8 +26,26 @@ import { FloatingContactButton } from './components/FloatingContactButton';
 import { ReadingProgressBar } from './components/ReadingProgressBar';
 import { AdminAuthModal } from './components/AdminAuthModal';
 import { AdminDashboard } from './components/AdminDashboard';
+import { SeoHeadManager } from './components/SeoHeadManager';
 import { ThemeLanguageProvider } from './context/ThemeLanguageContext';
 import { AnimatePresence, motion } from 'motion/react';
+
+const ROUTE_TO_PATH: Record<PageRoute, string> = {
+  accueil: '/',
+  '237-cinematique': '/237-cinematique',
+  portfolio: '/portfolio',
+  prestations: '/prestations',
+  tournage: '/tournage',
+  actualites: '/actualites'
+};
+
+function getPageFromPathname(pathname: string): PageRoute {
+  const clean = pathname.replace(/\/+$/, '') || '/';
+  const match = (Object.entries(ROUTE_TO_PATH) as [PageRoute, string][]).find(
+    ([, pathVal]) => pathVal === clean
+  );
+  return match ? match[0] : 'accueil';
+}
 
 const STORAGE_KEY = 'tomy_creator_237_sanity_cache_v4';
 const ADMIN_TOKEN_KEY = 'tomy_creator_admin_token_v1';
@@ -64,7 +82,28 @@ export default function App() {
     source: 'loading'
   });
 
-  const [activePage, setActivePage] = useState<PageRoute>('accueil');
+  const [activePage, setActivePage] = useState<PageRoute>(() =>
+    typeof window !== 'undefined' ? getPageFromPathname(window.location.pathname) : 'accueil'
+  );
+
+  const navigateToPage = useCallback((page: PageRoute) => {
+    setActivePage(page);
+    if (typeof window !== 'undefined') {
+      const targetPath = ROUTE_TO_PATH[page] || '/';
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState({ page }, '', targetPath);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const handlePopState = () => {
+      setActivePage(getPageFromPathname(window.location.pathname));
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
   const [selectedServiceForForm, setSelectedServiceForForm] = useState<
     string | undefined
   >(undefined);
@@ -195,7 +234,7 @@ export default function App() {
 
   const handleRequestShootWithService = (serviceTitle: string) => {
     setSelectedServiceForForm(serviceTitle);
-    setActivePage('tournage');
+    navigateToPage('tournage');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -331,6 +370,9 @@ export default function App() {
 
   return (
     <ThemeLanguageProvider>
+      {/* Dynamic Route-Aware SEO Metadata, Canonical & Schema.org Graph */}
+      <SeoHeadManager activePage={activePage} data={siteData} />
+
       {/* Subtle Fixed Reading Progress Bar at Top of Screen */}
       <ReadingProgressBar />
 
@@ -357,7 +399,7 @@ export default function App() {
               if (page !== 'tournage') {
                 setSelectedServiceForForm(undefined);
               }
-              setActivePage(page);
+              navigateToPage(page);
             }}
             brandName={siteData.brand.mainBrand}
             logoUrl={siteData.brand.logoUrl}
@@ -376,7 +418,7 @@ export default function App() {
                 {activePage === 'accueil' && (
                   <PageAccueil
                     data={siteData}
-                    onNavigate={setActivePage}
+                    onNavigate={navigateToPage}
                     onOpenLightbox={setLightboxMedia}
                     onOpenWhatsApp={handleOpenWhatsApp}
                     onRequestShootWithService={handleRequestShootWithService}
@@ -386,7 +428,7 @@ export default function App() {
                 {activePage === '237-cinematique' && (
                   <Page237Cinematique
                     data={siteData}
-                    onNavigate={setActivePage}
+                    onNavigate={navigateToPage}
                     onOpenLightbox={setLightboxMedia}
                     onOpenWhatsApp={handleOpenWhatsApp}
                   />
@@ -395,7 +437,7 @@ export default function App() {
                 {activePage === 'portfolio' && (
                   <PagePortfolio
                     data={siteData}
-                    onNavigate={setActivePage}
+                    onNavigate={navigateToPage}
                     onOpenLightbox={setLightboxMedia}
                   />
                 )}
@@ -411,7 +453,7 @@ export default function App() {
                 )}
 
                 {activePage === 'actualites' && (
-                  <PageActualites data={siteData} onNavigate={setActivePage} />
+                  <PageActualites data={siteData} onNavigate={navigateToPage} />
                 )}
               </motion.div>
             </AnimatePresence>
@@ -421,7 +463,7 @@ export default function App() {
           <Footer
             brand={siteData.brand}
             activePage={activePage}
-            onNavigate={setActivePage}
+            onNavigate={navigateToPage}
             onOpenWhatsApp={handleOpenWhatsApp}
             onOpenAdmin={handleOpenAdmin}
             isAdminAuthenticated={Boolean(adminToken && adminUser)}
